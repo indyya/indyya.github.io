@@ -7,16 +7,13 @@ body{
   min-height: 100vh;
   display: flex;
   place-items: center;
-  padding: 0.625rem
 }
 
 .tv { 
-  width: min(100%, 1200px);
+  width: 100%;
   aspect-ratio: 16/9;
   background-color: #241f1b;
   overflow: hidden;
-  border: 4px solid #0d0c0b;
-  border-radius: 0.625rem;
 }
 
 .tv__screen{
