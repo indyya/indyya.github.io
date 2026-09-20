@@ -40,6 +40,8 @@
       app.renderer.render(app.stage);
     }
     draw();
+    // Stretch the 320 x 180 drawing to fill the curved screen.
+    Object.assign(app.canvas.style, { display: "block", width: "100%", height: "100%" });
     screen.appendChild(app.canvas);
 
     let timer;
@@ -67,4 +69,5 @@
     if (app?.renderer) app.destroy(true);
   }
 })();
+
 
