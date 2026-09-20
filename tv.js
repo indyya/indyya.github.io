@@ -2,8 +2,8 @@
    CSS supplies the soft glass glow without blurring those pixels. */
 (async () => {
   // Horizontal lines dominate; RGB phosphors add only a fine grain.
-  const PHOSPHOR_STRENGTH = 0.10;
-  const LINE_BRIGHTNESS = [1.18, 0.92, 0.38];
+  const PHOSPHOR_STRENGTH = 0.03;
+  const LINE_BRIGHTNESS = [1.02, 0.99, 0.88];
   const BLUE = [66, 100, 207];
   const WIDTH = 960;
   const HEIGHT = 540;
