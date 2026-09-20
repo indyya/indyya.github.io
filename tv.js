@@ -27,6 +27,36 @@
     const picture = new PIXI.Sprite(texture);
     // Keep narrow RGB stripes sharp instead of grouping them into square blocks.
     app.stage.addChild(picture);
+    // Paint a soft reflection on its own transparent layer.
+    const glassSource = document.createElement('canvas');
+    glassSource.width = WIDTH;
+    glassSource.height = HEIGHT;
+    const glass = glassSource.getContext('2d');
+    function reflection(x, y, radiusX, radiusY, opacity) {
+      glass.save();
+      glass.translate(x, y);
+      glass.scale(radiusX, radiusY);
+      const light = glass.createRadialGradient(0, 0, 0, 0, 0, 1);
+      light.addColorStop(0, 'rgba(240,248,255,' + opacity + ')');
+      light.addColorStop(0.4, 'rgba(230,242,255,' + opacity * 0.5 + ')');
+      light.addColorStop(1, 'rgba(230,242,255,0)');
+      glass.fillStyle = light;
+      glass.fillRect(-1, -1, 2, 2);
+      glass.restore();
+    }
+    reflection(WIDTH * 0.30, HEIGHT * 0.08, WIDTH * 0.50, HEIGHT * 0.38, 0.22);
+    reflection(WIDTH * 0.78, HEIGHT * 0.14, WIDTH * 0.12, HEIGHT * 0.29, 0.13);
+    const glare = new PIXI.Sprite(PIXI.Texture.from(glassSource));
+    if (PIXI.filters?.BulgePinchFilter) {
+      glare.filters = [new PIXI.filters.BulgePinchFilter({
+        center: { x: 0.5, y: 0.5 },
+        radius: WIDTH * 0.65,
+        strength: 0.55
+      })];
+      glare.filterArea = new PIXI.Rectangle(0, 0, WIDTH, HEIGHT);
+    }
+    app.stage.addChild(glare);
+
 
     function draw() {
       // A slow, faint brightness band moves down the glass (no flashing).
