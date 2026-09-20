@@ -53,11 +53,7 @@
       if (reducedMotion.matches || document.hidden) return;
       timer = setInterval(draw, 125);
       if (window.gsap) {
-        animation = gsap.timeline()
-          .fromTo(screen, { scaleX: 0.06, scaleY: 0.008, opacity: 0.4 },
-            { scaleX: 1, scaleY: 0.008, opacity: 1, duration: 0.3, ease: 'power2.out' })
-          .to(screen, { scaleY: 1, duration: 0.65, ease: 'power2.out' })
-          .to(screen, { opacity: 0.97, duration: 2.4, repeat: -1,
+        animation = gsap.to(screen, { opacity: 0.97, duration: 2.4, repeat: -1,
             yoyo: true, ease: 'sine.inOut' });
       }
     }
