@@ -1,23 +1,50 @@
-*{
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
-body{
-  margin:0;
+body {
+  margin: 0;
   min-height: 100vh;
-  display: flex;
+  min-height: 100svh;
+  display: grid;
   place-items: center;
+  padding: 10px;
+  background: #e8e8e5;
 }
 
-.tv { 
-  width: 100%;
-  aspect-ratio: 16/9;
-  background-color: #241f1b;
+.tv {
+  position: relative;
+  width: min(100%, 1200px);
+  aspect-ratio: 16 / 9;
   overflow: hidden;
+  border: 4px solid #0d0c0b;
+  border-radius: 3px;
+  background: #241f1b;
+  box-shadow: 0 2px 5px #0009;
 }
 
-.tv__screen{
+.tv__screen {
   position: absolute;
   inset: 3% 2%;
-  background-color: #000;
+  overflow: hidden;
+  border-radius: 3% / 48%;
+  background: #4264cf;
+  box-shadow: 0 0 8px 4px #4264cf99, 0 0 18px #4264cf66;
+  transform-origin: center;
+}
+
+.tv__screen canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  image-rendering: pixelated;
+}
+
+/* Keep the pixels crisp; soften only the glass edges. */
+.tv__screen::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: repeating-linear-gradient(0deg, #0000000a 0 1px, transparent 1px 4px);
+  box-shadow: inset 0 0 14px 7px #172349b3;
 }
